@@ -58,7 +58,9 @@ jobs:
           cp -f ./configs/ipq60xx-6.6-jd.config .config
 
       - name: Generate configuration file
-        run: make defconfig
+        run: 
+          make defconfig
+          cat .config
 
       - name: Download packages
         run: make download -j16
