@@ -45,18 +45,20 @@ jobs:
         
       - name: Debug Info
         run: |
-          pwd
+          echo "======================="
+          echo "ls dir:"
+          echo "======================="
           ls -a
-          cp -f ./configs/ipq60xx-6.6-jd.config .config
-
+          
       - name: Update feeds
         run: |
           sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+          cp -f ./configs/ipq60xx-6.6-jd.config .config
 
       - name: Generate configuration file
-          make defconfig
+        run: make defconfig
 
       - name: Download packages
         run: make download -j16
