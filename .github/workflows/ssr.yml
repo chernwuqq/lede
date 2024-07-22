@@ -64,8 +64,8 @@ jobs:
           
       - name: Compile firmware
         run: |
-          make tools/install
-          make toolchain/install
+          make -j$(nproc) tools/install
+          make -j$(nproc) toolchain/install
           
           # Kernel modules
           #make target/linux/compile
