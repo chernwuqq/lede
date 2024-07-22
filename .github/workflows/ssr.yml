@@ -27,12 +27,6 @@ jobs:
       - name: Checkout OpenWrt
         uses: actions/checkout@v3
 
-      - name: Debug Info
-        run: |
-          pwd
-          ls -a
-          cp -f ./configs/ipq60xx-6.6-jd.config .config
-          
       - name: Update feeds
         run: |
           sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
@@ -45,9 +39,15 @@ jobs:
       - name: Download packages
         run: make download -j16
 
+      - name: Debug Info
+        run: |
+          pwd
+          ls ./package/
+          cp -f ./configs/ipq60xx-6.6-jd.config .config
+          
       - name: Compile firmware
         run: |
-          make -j$(nproc) package/luci-app-ssr-plus/compile || make -j1 V=s package/luci-app-ssr-plus/compile
+          make -j1 V=s package/luci-app-ssr-plus/compile
           echo "======================="
           echo "Space usage:"
           echo "======================="
