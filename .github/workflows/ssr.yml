@@ -66,8 +66,12 @@ jobs:
         run: |
           make tools/install
           make toolchain/install
+          
+          # Kernel modules
           #make target/linux/compile
           #make package/kernel/linux/compile
+
+          # luci-app-ssr-plus
           make -j1 V=s package/luci-app-ssr-plus/compile
           echo "======================="
           echo "Space usage:"
