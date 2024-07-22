@@ -48,6 +48,8 @@ jobs:
           
       - name: Compile firmware
         run: |
+          make tools/install
+          make toolchain/install
           make -j1 V=s package/luci-app-ssr-plus/compile
           echo "======================="
           echo "Space usage:"
