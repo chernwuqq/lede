@@ -34,7 +34,9 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: make defconfig
+        run: |
+          cp -f ./configs/ipq60xx-6.6-jd.config .config
+          make defconfig
         
       - name: Download packages
         run: make download -j16
@@ -43,7 +45,6 @@ jobs:
         run: |
           pwd
           ls ./package/
-          cp -f ./configs/ipq60xx-6.6-jd.config .config
           
       - name: Compile firmware
         run: |
