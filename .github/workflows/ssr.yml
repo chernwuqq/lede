@@ -73,6 +73,8 @@ jobs:
 
           # luci-app-ssr-plus
           make -j1 V=s package/luci-app-ssr-plus/compile
+          make package/index
+          
           echo "======================="
           echo "Space usage:"
           echo "======================="
